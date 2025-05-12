@@ -4,7 +4,16 @@ import { supabase } from '../lib/supabase'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import OnboardingStep2 from './onboardingStep2';
-import { SvgUri, SvgXml } from 'react-native-svg';
+
+import Frida from '../assets/FridaFart/frida-hjerte-pokal';
+import Logo from '../assets/svg/Logo.svg';
+import Car from '../assets/svg/Car.svg';
+import Racetrack from '../assets/svg/Racetrack.svg';
+
+
+import { useFonts, DynaPuff_400Regular } from '@expo-google-fonts/dynapuff';
+import { AnekDevanagari_400Regular } from '@expo-google-fonts/anek-devanagari';
+import { SpecialGothicExpandedOne_400Regular } from '@expo-google-fonts/special-gothic-expanded-one';
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
     supabase.auth.startAutoRefresh()
@@ -13,6 +22,7 @@ AppState.addEventListener('change', (state) => {
   })
 
 export default function OnboardingStart() {
+  const [fontsLoaded] = useFonts({ DynaPuff_400Regular, AnekDevanagari_400Regular, SpecialGothicExpandedOne_400Regular});
   const navigation = useNavigation();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -75,16 +85,16 @@ export default function OnboardingStart() {
          <AntDesign name="arrowleft" size={24} color="white" />
         <Text style={styles.backButtonText}>Tilbage</Text>
       </TouchableOpacity>
-
+      <Frida style={styles.frida} />
     </View>
       <Text style={styles.title}>Jeg skal vide dit niveau!</Text>
       <Text style={styles.text}>For at hjælp dig bedst skal vi vide dit niveau af viden. Så nu kommer en hurtig quiz.</Text>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <TouchableOpacity style={styles.button}  disabled={loading}onPress={() => navigation.navigate('onboardingStep2')}>
+        <TouchableOpacity style={styles.button}  disabled={loading}onPress={() => navigation.navigate('OnboardingStep2', { email, password })}>
           <Text style={styles.buttonText}>Kom igang</Text>
         </TouchableOpacity>
         <View>
-        <SvgUri width="100%" height="100%" uri={fridaSvg} />
+        <Frida />
     </View>
       </View>
      
@@ -111,14 +121,17 @@ const styles = StyleSheet.create({
     backgroundColor:'#CD1F4D',
     aspectRatio:1,
   },
- 
+  frida:{
+    position:'absolute',
+    bottom:-35,
+  },
   title: {
     fontSize: 27,
-    marginTop: 18,
+    marginTop: 65,
     marginBottom: 18,
     fontWeight: "bold",
     color:'#112045',
-    fontFamily:'Special Gothic Expanded One',
+    fontFamily:'SpecialGothicExpandedOne_400Regular',
     width:'100%',
     textAlign:'center',
 },
@@ -137,13 +150,13 @@ const styles = StyleSheet.create({
   },
   text:{
     fontSize: 24,
-    color:'white',
-    fontFamily:'DynaPuff',
+    color:'black',
+    fontFamily:'AnekDevanagari_400Regular',
     width: '100%',
     marginLeft:'auto',
     marginRight:'auto',
     textAlign:'center',
-    maxWidth:150,
+   fontWeight: 500,
   },
   longText:{
   color:'white',
@@ -175,7 +188,7 @@ const styles = StyleSheet.create({
      color:'white',
      fontSize:24,
      fontWeight:'bold',
-     fontFamily:'Anek Devanagari',
+     fontFamily:'AnekDevanagari_400Regular',
      textAlign:'center',
  },
  backButton:{

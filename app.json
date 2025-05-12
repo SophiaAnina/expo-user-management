@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "expo-user-management",
-    "slug": "expo-user-management",
+    "slug": "box-box-club",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,12 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1ec0ed2d-83e0-4b00-80ca-e89992c40463"
+      }
+    },
+    "owner": "sophiaanina"
   }
 }

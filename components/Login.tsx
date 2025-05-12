@@ -3,6 +3,7 @@ import { Alert, StyleSheet, View, AppState,Button, TextInput, Text, TouchableOpa
 import { supabase } from '../lib/supabase'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+import HomeScreen from '../screens/HomeScreen';
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
     supabase.auth.startAutoRefresh()
@@ -22,7 +23,7 @@ export default function Login() {
       email: email,
       password: password,
     })
-
+    navigation.navigate('Home')
     if (error) Alert.alert(error.message)
     setLoading(false)
   }
@@ -65,9 +66,7 @@ export default function Login() {
 
   return (
     <ScrollView style={styles.container}>
-       <View style={[styles.verticallySpaced, styles.mt20]}>
-      
-      </View>
+
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Text style={styles.label}>Mail:</Text>
         <TextInput
@@ -102,7 +101,7 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+  
     padding: 12,
   },
   verticallySpaced: {
@@ -184,12 +183,13 @@ const styles = StyleSheet.create({
     width:120,
     paddingVertical:10,
     marginLeft:10,
-
+    position:'absolute',
+    top:10,
+    zIndex:2,
     flexDirection:'row',
     paddingHorizontal:10,
     justifyContent:'space-between',
     borderRadius:8,
-
   },
   backButtonText:{
     color:'white',
@@ -197,6 +197,5 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     fontFamily:'Anek Devanagari',
    justifyContent:'space-between',
-
   },
 })

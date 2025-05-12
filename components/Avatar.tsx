@@ -94,7 +94,7 @@ export default function AvatarList() {
       {/* Back Button */}
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => navigation.navigate('Account')} // Navigate back to Account screen
+        onPress={() => navigation.navigate('NewUser')} // Navigate back to Account screen
       >
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
